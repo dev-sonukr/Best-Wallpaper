@@ -22,10 +22,10 @@ class WallpaperRepoImpl @Inject constructor(private val picSumApi: PicSumApi): W
             }
         }catch (e: Exception){
             var errorOutput = ""
-            errorOutput = if(e.message != null){
-                e.message!!
+            if(e.message != null){
+                errorOutput =e.message!!
             }else{
-                "Something went wrong"
+               errorOutput = "Something went wrong"
             }
             emit(Resource.Error(null,errorOutput))
         }

@@ -3,8 +3,6 @@ package com.myapplication.bestwallpaper.presentation.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,7 +10,7 @@ import com.myapplication.bestwallpaper.R
 import com.myapplication.bestwallpaper.domain.entities.WallpaperLink
 
 class RecycleViewAdapter(private var dataSet: List<WallpaperLink>) :
-    RecyclerView.Adapter<RecycleViewAdapter.ViewHolder>() {
+      RecyclerView.Adapter<RecycleViewAdapter.ViewHolder>() {
 
     /**
      * Provide a reference to the type of views that you are using

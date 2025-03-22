@@ -34,24 +34,26 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupViews(){
         binding.ImagesRecyclerView.apply {
-            layoutManager = GridLayoutManager(context,2)
+            layoutManager = GridLayoutManager(context,3)
+            adapter = RecycleViewAdapter(emptyList())
         }
     }
 
     private fun collectUiState(){
         lifecycleScope.launch(Dispatchers.Main){
-            wallpaperViewModel.wallpaperList.collect(){ wallpaperUistate ->
+            wallpaperViewModel.wallpaperList.collect{ wallpaperUistate ->
                 when(wallpaperUistate){
                     is WallpaperUiState.Loading ->{
                         binding.progressbar.visibility = View.VISIBLE
                         Toast.makeText(this@MainActivity, "Wallpapers are currently empty", Toast.LENGTH_SHORT).show()
                     }is WallpaperUiState.EmptyList ->{
-                        binding.progressbar.visibility = View.VISIBLE
+                        binding.progressbar.visibility = View.GONE
                         Toast.makeText(this@MainActivity, "Wallpapers are Loading", Toast.LENGTH_SHORT).show()
                     }is WallpaperUiState.Success ->{
                         binding.progressbar.visibility = View.GONE
                         populateDataInRecyclerView(wallpaperUistate.data)
                     }is WallpaperUiState.Error ->{
+                        binding.progressbar.visibility = View.GONE
                         Toast.makeText(this@MainActivity, "Error comes Bro ", Toast.LENGTH_SHORT).show()
                     }
                 }
